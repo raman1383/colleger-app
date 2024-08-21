@@ -1,0 +1,222 @@
+
+
+DROP TABLE IF EXISTS `messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `messages` (
+  `chat_id_it_belongs_to` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `time_sent` datetime NOT NULL DEFAULT current_timestamp(),
+  `message_content` text DEFAULT NULL,
+  KEY `chat_id_it_belongs_to` (`chat_id_it_belongs_to`),
+  KEY `sender_id` (`sender_id`),
+  FOREIGN KEY (`chat_id_it_belongs_to`) REFERENCES `chats` (`chat_id`),
+  FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `messages`
+--
+
+LOCK TABLES `messages` WRITE;
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+INSERT INTO `messages` VALUES (1,7,'2024-04-05 16:56:08',0,'xyz'),(1,7,'2024-04-05 16:57:15',0,'hello'),(1,7,'2024-04-08 20:23:20',0,'are you there?'),(9,11,'2024-04-21 22:24:27',0,'hello lana'),(9,9,'2024-04-22 08:06:18',0,'hlo abas');
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pending_verifications`
+--
+
+DROP TABLE IF EXISTS `pending_verifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pending_verifications` (
+  `case_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `submission_date` datetime NOT NULL,
+  `verification_image_link` varchar(255) NOT NULL,
+  PRIMARY KEY (`case_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `pending_verifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pending_verifications`
+--
+
+LOCK TABLES `pending_verifications` WRITE;
+/*!40000 ALTER TABLE `pending_verifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pending_verifications` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `profile_pics`
+--
+
+DROP TABLE IF EXISTS `profile_pics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `profile_pics` (
+  `pic_link` varchar(60) NOT NULL,
+  `owner_id` int(11) NOT NULL,
+  KEY `owner_id` (`owner_id`),
+  CONSTRAINT `profile_pics_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `profile_pics`
+--
+
+LOCK TABLES `profile_pics` WRITE;
+/*!40000 ALTER TABLE `profile_pics` DISABLE KEYS */;
+INSERT INTO `profile_pics` VALUES ('65fdc080285b7.jpg',7),('65fdc73ddd0e9.jpg',7),('65fdcc3f66b3c.jpg',7),('6606666745b2e.jpg',9),('6620021b26e1e.jpg',11),('66249e35e480f.jpg',11);
+/*!40000 ALTER TABLE `profile_pics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prompts`
+--
+
+DROP TABLE IF EXISTS `prompts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prompts` (
+  `prompt_id` int(11) NOT NULL AUTO_INCREMENT,
+  `prompt_title` text NOT NULL,
+  PRIMARY KEY (`prompt_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prompts`
+--
+
+LOCK TABLES `prompts` WRITE;
+/*!40000 ALTER TABLE `prompts` DISABLE KEYS */;
+INSERT INTO `prompts` VALUES (1,'...Ú†Ù‡ Ù†ÙˆØ¹ Ø±Ø§Ø¨Ø·Ù‡ Ø§ÛŒ Ù…ÛŒØ®ÙˆØ§Ù…'),(2,'...Ù…Ù† Ø¯Ù†Ø¨Ø§Ù„ Ú©Ø³ÛŒ Ù‡Ø³ØªÙ… Ú©Ù‡'),(3,'...Ù„Ø°Øª Ù‡Ø§ÛŒ Ø³Ø§Ø¯Ù‡ Ù…Ù†'),(4,'...Ø¨Ø²Ø±Ú¯ØªØ±ÛŒÙ† Ù‚Ø¯Ø±Øª Ù…Ù†'),(5,'...Ø±Ù„ Ù…Ù† Ø¨ÙˆØ¯Ù† Ù…Ø«Ù„'),(6,'...Ø¢Ø®Ø± Ù‡ÙØªÙ‡ Ù…Ø¹Ù…ÙˆÙ„ÛŒ'),(7,'...Ø¨Ù‡ØªØ±ÛŒÙ† Ø±Ø§Ù‡ Ø¨Ø±Ø§ÛŒ Ø¯Ø±Ø®ÙˆØ§Ø³Øª Ø³Ø± Ù‚Ø±Ø§Ø± Ø§ÙˆÙ…Ø¯Ù† Ø§Ø² Ù…Ù† Ø§ÛŒÙ† Ø§Ø³Øª Ú©Ù‡'),(8,'...Ø¨Ù‡ Ù†Ø¸Ø±Ù… ÙˆÛŒÚ˜Ú¯ÛŒ Ø¨Ø§Ø±Ø² ÛŒÚ© Ø±Ø§Ø¨Ø·Ù‡ Ø®ÙˆØ¨ Ø§ÛŒÙ† Ø§Ø³Øª Ú©Ù‡'),(9,'...Ú†ÛŒØ²ÛŒ Ú©Ù‡ Ø¨Ø±Ø§ÛŒ Ù…Ù† ØºÛŒØ±Ù‚Ø§Ø¨Ù„ Ù…Ø°Ø§Ú©Ø±Ù‡ Ø§Ø³Øª'),(10,'...Ù¾Ø±Ú†Ù… Ù‡Ø§ÛŒ Ø³Ø¨Ø²ÛŒ(ÙˆÛŒÚ˜Ú¯ÛŒ Ù‡Ø§ÛŒ Ø®ÙˆØ¨) Ú©Ù‡ Ø¯Ù†Ø¨Ø§Ù„Ø´ÙˆÙ†Ù…'),(11,'...Ú©Ù„ÛŒØ¯ Ø¨Ù‡ Ù‚Ù„Ø¨ Ù…Ù† Ø§ÛŒÙ† Ø§Ø³Øª'),(12,'...Ù…Ù† Ø®ÙˆØ¯Ù…Ùˆ Ø§Ø² ÛŒÚ© Ø­Ø§Ù„ Ø±ÙˆØ­ÛŒ Ø¨Ø¯ Ø¯Ø±Ù…ÛŒØ§Ø±Ù… Ø¨Ø§'),(13,'...Ú†ÛŒØ²Ø§ÛŒÛŒ Ú©Ù‡ Ø¯ÙˆØ³ØªØ§Ù… Ø¯Ø±Ø¨Ø§Ø±Ø´ Ø§Ø²Ù… Ù†ØµÛŒØ­Øª Ù…ÛŒÙ¾Ø±Ø³Ù†'),(14,'...Ù…Ù† Ø¢Ø±ÙˆÙ… Ù…ÛŒØ´Ù… Ø¨Ø§'),(15,'...ØªÙ†Ù‡Ø§ Ú†ÛŒØ²ÛŒ Ú©Ù‡ Ø¯ÙˆØ³Øª Ø¯Ø§Ø±Ù… Ø¯Ø±Ø¨Ø§Ø±Ù‡ ØªÙˆ Ø¨Ø¯ÙˆÙ†Ù… Ø§ÛŒÙ† Ø§Ø³Øª Ú©Ù‡'),(16,'...Ø¨ÛŒØ§ Ù…Ø·Ù…Ø¦Ù† Ø´ÛŒÙ… Ú©Ù‡ Ø¨Ø§Ù‡Ù… ØªÙˆØ§ÙÙ‚ Ø¯Ø§Ø±ÛŒÙ… Ø¯Ø±Ø¨Ø§Ù‡'),(17,'...Ø¨Ø²Ø±Ú¯ØªØ±ÛŒÙ† Ø±ÛŒØ³Ú© Ù‡Ø§ÛŒÛŒ Ú©Ù‡ Ú©Ø±Ø¯Ù…'),(18,'...Ø®ÙˆØ¯Ø¬ÙˆØ´ ØªØ±ÛŒÙ† Ú©Ø§Ø±ÛŒ Ú©Ù‡ Ø§Ù†Ø¬Ø§Ù… Ø¯Ø§Ø¯Ù…'),(19,'...Ø´Ø¹Ø§Ø± Ø²Ù†Ø¯Ú¯ÛŒ Ù…Ù† Ø§ÛŒÙ†Ù‡ Ú©Ù‡'),(20,'...Ø¯Ùˆ  ØªØ§ Ø­Ù‚ÛŒÙ‚Øª Ùˆ ÛŒÚ© Ø¯Ø±ÙˆØº Ø¯Ø±Ø¨Ø§Ø±Ù‡ Ù…Ù† '),(21,'...Ø¨Ø¯ØªØ±ÛŒÙ† Ø§ÛŒØ¯Ù‡ Ø§ÛŒ Ú©Ù‡ ØªÙˆ Ø¹Ù…Ø±Ù… Ø¯Ø§Ø´ØªÙ…'),(22,'...Ù…Ù† Ø¨Ù‡ØªØ±ÛŒÙ† Ø¬Ø§ÛŒ Ø´Ù‡Ø±Ùˆ Ù…ÛŒØ¯ÙˆÙ†Ù… Ø¨Ø±Ø§ÛŒ'),(23,'...Ú†ÛŒÚ©Ø§Ø± Ù…ÛŒÚ©Ù†ÛŒ Ø§Ú¯Ù‡ Ø¨Ù‡Øª Ø¨Ú¯Ù… Ú©Ù‡'),(24,'...Ø§Ú¯Ù‡ ØºÙˆÙ„ Ú†Ø±Ø§Øº Ø¬Ø§Ø¯Ùˆ Ø³Ù‡ ØªØ§ Ø¢Ø±Ø²Ùˆ Ø¨Ø±Ø§Ù… Ø¨Ø±Ø§ÙˆØ±Ø¯Ù‡ Ù…ÛŒÚ©Ø±Ø¯, Ø³Ù‡ ØªØ§ Ø¢Ø±Ø²ÙˆÙ…'),(25,'...Ù…Ù† Ø¨Ù‡ Ø·Ø±Ø² Ø¹Ø¬ÛŒØ¨ÛŒ Ø¬Ø°Ø¨');
+/*!40000 ALTER TABLE `prompts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `saved`
+--
+
+DROP TABLE IF EXISTS `saved`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `saved` (
+  `saver_id` int(11) NOT NULL,
+  `saved_id` int(11) NOT NULL,
+  KEY `saver_id` (`saver_id`),
+  KEY `saved_id` (`saved_id`),
+  CONSTRAINT `saved_ibfk_1` FOREIGN KEY (`saver_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `saved_ibfk_2` FOREIGN KEY (`saved_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `saved`
+--
+
+LOCK TABLES `saved` WRITE;
+/*!40000 ALTER TABLE `saved` DISABLE KEYS */;
+INSERT INTO `saved` VALUES (7,9),(7,9),(11,9),(11,9),(11,9),(11,11),(9,11),(9,7);
+/*!40000 ALTER TABLE `saved` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(20) NOT NULL,
+  `bio` text DEFAULT 'bio here!',
+  `first_name` varchar(20) NOT NULL,
+  `phone_number` varchar(11) NOT NULL,
+  `birth_date` date NOT NULL,
+  `gender_is_male` tinyint(1) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `account_created` datetime NOT NULL,
+  `last_login` datetime NOT NULL,
+  `height` int(11) DEFAULT NULL,
+  `weight` int(11) DEFAULT NULL,
+  `verified` enum('none','pending','verified') NOT NULL DEFAULT 'none',
+  `desirability_score` float NOT NULL DEFAULT 50,
+  `visibility_score` float NOT NULL DEFAULT 50,
+  `roses_gotten_count` int(11) DEFAULT 0,
+  `roses_sendable_count` int(11) NOT NULL DEFAULT 1,
+  `has_subscription` tinyint(1) NOT NULL DEFAULT 0,
+  `limit_remaining` int(11) NOT NULL DEFAULT (case when `gender_is_male` then 10 else 100 end),
+  `time_of_last_limit_end` datetime NOT NULL DEFAULT '1403-01-10 00:00:00',
+  `subs_end_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_id` (`user_id`),
+  UNIQUE KEY `user_name` (`user_name`),
+  UNIQUE KEY `phone_number` (`phone_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (7,'raman','bio here!','raman','09333333333','1380-01-01',1,'$2a$10$Bfu.QkLejEk2kgAWTguh4OEtCJb9eyyJ9B46h4LwJvJScAuyg/dH6','1403-01-03 00:00:00','1403-01-03 00:00:00',179,80,'none',50,50,0,0,0,10,'1403-01-10 00:00:00',NULL),(9,'lana_rh','bio here!','lana','09333333111','1380-01-01',0,'$2a$10$m9WsBuXPkXLvFx/q5.5XQeg1MvRFUQJqmuq1kaBQ3hHF3j92jUQUm','1403-01-09 00:00:00','1403-01-09 00:00:00',167,71,'none',50,50,0,1,0,100,'1403-01-10 00:00:00',NULL),(11,'abas','bio changed 3','abas','09066666666','1383-01-01',1,'$2a$10$is54aZ3h.MgUzGb2cUe7quwQ4yU5gNUkhBkNnnMxDWsm8cBvo3bdW','1403-01-28 00:00:00','1403-01-28 00:00:00',190,92,'none',50,50,0,0,0,10,'1403-02-18 00:00:00','1403-03-07 00:00:00');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users_prompt_answers`
+--
+
+DROP TABLE IF EXISTS `users_prompt_answers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users_prompt_answers` (
+  `owner_id` int(11) NOT NULL,
+  `prompt_title` int(11) NOT NULL,
+  `prompt_answer` text NOT NULL,
+  KEY `owner_id` (`owner_id`),
+  KEY `prompt_title` (`prompt_title`),
+  CONSTRAINT `users_prompt_answers_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `users_prompt_answers_ibfk_2` FOREIGN KEY (`prompt_title`) REFERENCES `prompts` (`prompt_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users_prompt_answers`
+--
+
+LOCK TABLES `users_prompt_answers` WRITE;
+/*!40000 ALTER TABLE `users_prompt_answers` DISABLE KEYS */;
+INSERT INTO `users_prompt_answers` VALUES (7,5,'idk  '),(7,1,'to fuck'),(7,7,'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy'),(7,5,'idk  '),(7,5,'idk  '),(9,1,'to fuck...'),(9,2,'someone to fuck'),(9,24,'to fuck, suck and rock'),(11,1,'booty call');
+/*!40000 ALTER TABLE `users_prompt_answers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'college6_main'
+--
+
+--
+-- Dumping routines for database 'college6_main'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-05-11 15:00:58

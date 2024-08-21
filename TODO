@@ -1,0 +1,126 @@
+# MOTO: atom by atom(ref to atomic network) and version by version
+
+Hostname:
+localhost
+Database:
+admin_payment
+Username:
+admin_payment
+Password:
+MYdm8qhc5X7HjyWBz84w
+---
+Hostname:
+localhost
+Database:
+admin_main
+Username:
+admin_main
+Password:
+uzZLWcQWYALa39R75P5v
+
+--- TO LUNCH ---
+
+. no weight
+. invite friends ! virility !!!
+. voice
+. Hobbies and Interest / show common interests / university and major
+. the card fetcher
+. settings page
+. chatroom
+. version control
+. website
+. admin app(for auth)
+. SMS service
+. payment service
+
+--- NEXT VERSION ---
+
+. add social media hooks: instagram profile link, 
+. who likes me | boosts
+. social graph | common people we know | match making people you know
+
+---
+
+اطلاعات ssh خدمت شما ارسال می‌گردد:
+
+IP:
+185.255.90.186
+
+username:
+root
+
+pass:
+jGEWtX4mQF94kKmoqKL7
+
+اطلاعات کنترل‌پنل بصورت ذیل است:
+
+https://185.255.90.186:2222/evo
+
+username:
+admin
+
+pass:
+wtgH7qchZUGEmw4ri7GD
+
+
+
+<?php
+$servername = "localhost";
+$username = "admin_db";
+$password = "2h3gnZgxfynRUDCtpPL2";
+$dbname = "admin_db";
+$mys = mysqli_connect($servername, $username, $password, $dbname);
+echo "start testing";
+if ($mys->connect_error) {
+  die("Connection failed: " . $mys->connect_error);
+  echo "Connected faild";
+}
+echo "Connected successfully";
+
+$sql = "CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+if (mysqli_query($mys, $sql)) {
+  echo "Table MyGuests created successfully";
+} else {
+  echo "Error creating table: " . mysqli_error($conn);
+}
+
+?>
+
+
+
+function executeQuery($conn, $sql) {
+    $result = $conn->query($sql);
+    echo $result;
+
+    if ($result === false) {
+        echo "Error executing query: " . $conn->error;
+        return;
+    }
+
+    if ($result->num_rows > 0) {
+       
+
+        // Print rows
+        echo "success executing query: " ;
+        while ($row = $result->fetch_assoc()) {foreach ($row as $value) {echo $value;} }
+
+        
+
+    } else {
+        echo "No results found.";
+    }
+}
+
+---
+Delta calc(most effective steps to do):
+
+. card fetcher
+. website 
+. SMS service
+. payment service

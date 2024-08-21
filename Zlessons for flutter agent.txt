@@ -1,0 +1,7 @@
+# more capable the agent, more general commands from user.
+# less capable the agent, more specific commands from user.
+
+# GLUI( graphical-language user interface ) -> tell the agent what you want to do, then graphics get rendered
+
+evolution of capabilities -> specific to more and more general
+
